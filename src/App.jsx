@@ -13,13 +13,13 @@ const App = () => {
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Layout />}>
-            <Route path="/ManageUser" element={<ManageUser />} />
-            <Route path="/FolderCreate" element={<FolderCreate />} />
-            <Route path="/ManageImageCreate" element={<ManageImageCreate />} />
+            <Route index element={<ManageUser />} />
+            <Route path="/folder_create" element={<FolderCreate />} />
+            <Route path="/manage_image_create" element={<ManageImageCreate />} />
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/Sign up" element={<SignUp />} />
+        <Route path="/sign_up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
