@@ -1,8 +1,9 @@
-import React from 'react'
+
 
 const ManageImageCreate = () => {
   return (
     <div>
+      Image create
       
     </div>
   )

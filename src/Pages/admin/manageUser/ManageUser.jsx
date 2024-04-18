@@ -1,10 +1,20 @@
-import React from 'react'
+import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const ManageUser = () => {
+
+  const navigate=useNavigate()
   return (
     <div>
-      
-    </div>
+    <Button
+      onClick={()=>{
+        sessionStorage.clear();
+        navigate("/login")
+      }}>
+        Log Out
+
+    </Button>
+  </div>
   )
 }
 
