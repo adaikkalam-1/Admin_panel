@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+
 import { useNavigate } from 'react-router-dom';
 
 const ManageUser = () => {
@@ -6,14 +6,14 @@ const ManageUser = () => {
   const navigate=useNavigate()
   return (
     <div>
-    <Button
+    <button
       onClick={()=>{
         sessionStorage.clear();
         navigate("/login")
       }}>
         Log Out
 
-    </Button>
+    </button>
   </div>
   )
 }

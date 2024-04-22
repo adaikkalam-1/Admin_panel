@@ -1,12 +1,32 @@
-
-
 const ManageImageCreate = () => {
   return (
     <div>
-      Image create
-      
-    </div>
-  )
-}
+      ManageImageCreate
+      {/* <div className="container">
+        <form>
+          <div className="input">
+            <input type="text" 
+            placeholder="Image Name" 
+            name="name" />
+          </div>
+          <div className="input">
+            <input type="text" 
+            placeholder="Image Description" 
+            name="description" />
+          </div>
+          <div className="input">
+            <input type="file" 
+             
+            placeholder="Select The Image" 
+            name="image"
+            accept=".jpg, .jpeg, .png" />
+          </div>
 
-export default ManageImageCreate
+
+        </form>
+      </div> */}
+    </div>
+  );
+};
+
+export default ManageImageCreate;

@@ -1,11 +1,17 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
+import SideBar from "./Pages/sidebar/SideBar";
+
 
 const Layout = () => {
   return (
-    <main>
-        <Outlet/>
-    </main>
-  )
-}
+    <div className="layout_grid">
+      <SideBar/>
+      <h1 className="head-grid">Welcome</h1>
+      <main className="outlet_grid">
+        <Outlet />
+      </main>
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;

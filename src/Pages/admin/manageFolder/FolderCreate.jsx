@@ -1,18 +1,18 @@
-import { Button } from 'antd'
+
 import { useNavigate } from 'react-router-dom'
 
 const FolderCreate = () => {
   const navigate=useNavigate()
   return (
     <div>
-      <Button
+       <button
         onClick={()=>{
           sessionStorage.clear();
           navigate("/login")
         }}>
           Log Out
 
-      </Button>
+      </button> 
     </div>
   )
 }

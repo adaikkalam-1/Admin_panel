@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Button, Form, Input } from "antd";
 import axios from "axios";
 import { useNavigate ,Link} from "react-router-dom";
+import Input from "../../components/input/Input";
+import Button from "../../components/button/Button";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     name:"",
     email: "",
     password: "",
+    confirm_password:""
   });
 
 
@@ -27,7 +29,7 @@ const SignUp = () => {
       .then((response)=> {
         console.log(response)
 
-        navigate("/Login")  
+        navigate("/login")  
     
       })
       .catch((error)=> {
@@ -37,105 +39,55 @@ const SignUp = () => {
 
   return (
     <div className="container">
-      <Form onFinish={handleSubmit} onFinishFailed={(e) => console.log(e)}>
-        <h1>Sign Up</h1>
+    <form  className="form"onSubmit={handleSubmit}>
+    <div className="form-title">Sign Up</div>
+    <div className="input-container">
+      <Input
+        type="text"
+        placeholder="Name"
+        name="name"
+        onChange={handleChange}
+        className="input-container"
+      />
+      </div>
+      <div className="input-container">
+      <Input
+        type="email"
+        placeholder="E-mail"
+        name="email"
+        onChange={handleChange}
+        className="input-container"
+      />
+      </div>
+      <div className="input-container">
+      <Input
+        type="password"
+        placeholder="Password"
+        name="password"
+        onChange={handleChange}
+        className="input-container"
+      />
+      </div>
+      <div className="input-container">
+      <Input
+        type="password"
+        placeholder="Confirm Password"
+        name="confirm_password"
+        onChange={handleChange}
+        className="input-container"
+      />
+      </div>
+      
+      {/* {error && <div className="error_msg">{error}</div>} */}
         
-       
-        <Form.Item
-          name="Name"
-          rules={[
-            {
-              type: "Name",
-              message: "The input is not valid Name!",
-            },
-            {
-              required: true,
-              message: "Please input your Name!",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="input"
-          />
-        </Form.Item>
-        
-        <Form.Item
-          name="email"
-          rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="input"
-          />
-        </Form.Item>
+      <Button type="submit" className="submit" buttonName="submit" />
+      <p className="signup-link">
+      No account?
+      <Link to="/login" >Sign in</Link>
+      
+    </p>
+    </form>
 
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password
-            placeholder="Password"
-            name="password" 
-            value={formData.password}
-            onChange={handleChange}
-            className="input"
-          />
-        </Form.Item>
-        <Form.Item
-        name="confirm"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please confirm your password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('The new password that you entered do not match!'));
-            },
-          }),
-        ]}
-      >
-        <Input.Password placeholder="Confirm Password" />
-      </Form.Item>
-       
-        <Form.Item
-          wrapperCol={{
-            span: 16,
-          }}
-        >
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-          <Link to='/login' className="btn"> Login </Link>
-        </Form.Item>
-
-      </Form>
     </div>
   );
 };
