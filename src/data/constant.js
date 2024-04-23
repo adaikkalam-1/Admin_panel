@@ -1,6 +1,6 @@
 export const sideBar=[{
     path:"dashboard",
-    name:"Dashboard",
+    name:"Dash Board",
 },
 {
   

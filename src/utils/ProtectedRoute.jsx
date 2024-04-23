@@ -6,8 +6,8 @@ const ProtectedRoute = () => {
    const token=sessionStorage.getItem("user_token")
    console.log(user);
    
-   // const result= user && token ? <Outlet/> : <Navigate to="/login" />
-   return <Outlet/>;
+   const result= user && token ? <Outlet/> : <Navigate to="/login" />
+   return result;
 
   
   

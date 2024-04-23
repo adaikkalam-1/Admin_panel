@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { sideBar } from "../../data/constant";
-
+import './sidebar.css'
 const SideBar = () => {
   return (
-    <div className="side_bar">
+    <div className="side_bar_container">
       <ul>
         {sideBar.map((item,index) => (
           <li key={index}>
-            <NavLink to={item.path}>{item.name}</NavLink>
+            <NavLink className="navLink" to={item.path}>{item.name}</NavLink>
           </li>
         ))}
       </ul>

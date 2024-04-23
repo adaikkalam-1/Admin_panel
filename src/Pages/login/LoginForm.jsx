@@ -1,100 +1,94 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
 import Input from "../../components/input/Input";
+import { useNavigate, Link } from "react-router-dom";
 import Button from "../../components/button/Button";
+import { Login } from "../../services/Index";
 
-const SignUp = () => {
+const LoginForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
+  
   });
-  const [error, setError] = useState("");
+  const [error,setError]=useState("")
 
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value,
     });
-    setError("");
-    console.log(name, value);
+    setError("")
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios
-      .post("http://192.168.0.113/api/user/register", formData)
-      .then((response) => {
-        console.log(response);
-        navigate("/login");
+    
+      Login(formData).then((response) => {
+        const user=response.user;
+        const token=response.token;
+        sessionStorage.setItem("user_data", JSON.stringify(user));
+        sessionStorage.setItem("user_token", token);
+        navigate("/");
+       console.log(response)
       })
-      .catch((error) => {
-        if (
-          error.response &&
-          error.response.status >= 400 &&
-          error.response.status <= 500
-        ) {
-          setError(error.response.data.message);
-        }
-      });
+    .catch((error)=>{
+      if (
+        error.response &&
+              error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+      }
+      
+      // console.log(error);
+      
+      // setError(error.response.data.message)
+    })
   };
-
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
-        <div className="form-title">Sign Up</div>
+        <div className="form-title">Login</div>
         <div className="input-container">
           <Input
-            label="Name "
-            type="text"
-            placeholder="Name"
-            name="name"
-            onChange={handleChange}
-            value={formData.name}
-            className="input-container"
-            required="true"
-          />
-        </div>
-
-        <div className="input-container">
-          <Input
-            label="Email "
+            label="Email"
             type="email"
-            placeholder="E-mail"
+            placeholder="Email"
             name="email"
             onChange={handleChange}
             value={formData.email}
             className="input-container"
-            required="true"
+        
           />
         </div>
+
         <div className="input-container">
           <Input
-            label="Password "
+           label="Password"
             type="password"
             placeholder="Password"
             name="password"
             onChange={handleChange}
             value={formData.password}
             className="input-container"
-            required="true"
+          
           />
         </div>
-
-        {error && <div className="input_error">{error}</div>}
-
+        <span className="forgot-password">
+          <a href="#">Forgot Password ?</a>
+        </span>
+      {error && <div className="input_error">{error}</div> }
         <Button type="submit" className="submit" buttonName="submit" />
         <p className="signup-link">
           No account?
-          <Link to="/login">Sign in</Link>
+          <Link to="/sign_up">Sign Up</Link>
         </p>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default LoginForm;
