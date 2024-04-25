@@ -13,12 +13,11 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
-  const token = JSON.parse(localStorage.getItem("accessToken"));
+  const token = JSON.parse(localStorage.getItem("user_token"));
   return {
     ...config,
     headers: {
       "Access-Control-Allow-Origin": "*",
-      application_id: config.headers.application_id,
       token: `${token}`,
     },
   };

@@ -1,14 +1,17 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "./Pages/sidebar/SideBar";
-import './layout.css'
+import "./layout.css";
 
 const Layout = () => {
   return (
     <div className="layout_grid">
-      <SideBar/>
+      <SideBar />
       <h1 className="head-grid">Welcome</h1>
+
       <main className="outlet_grid">
-        <Outlet />
+        <div className="con">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

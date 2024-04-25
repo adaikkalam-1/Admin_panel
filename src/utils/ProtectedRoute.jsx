@@ -7,7 +7,7 @@ const ProtectedRoute = () => {
    console.log(user);
    
    const result= user && token ? <Outlet/> : <Navigate to="/login" />
-   return result;
+   return result ;
 
   
   

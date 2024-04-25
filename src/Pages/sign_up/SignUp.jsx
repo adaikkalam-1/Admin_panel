@@ -1,51 +1,93 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
+import Validation from "../../common/Validation";
+import { Register } from "../../services/Index";
 
 const SignUp = () => {
+  const {
+    validateSign_up,
+    validateName,
+    validateEmailAddress,
+    validatePassword,
+  } = Validation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
+  const [validate, setValidate] = useState(validateSign_up);
   const [error, setError] = useState("");
+  const [serverResponse, setServerResponse] = useState("");
 
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
+    let temp = { ...formData };
     setFormData({
       ...formData,
       [name]: value,
     });
-    setError("");
+    if (name == "name") {
+      let validationResult = validateName(value);
+      temp[name] = validationResult.value;
+      setValidate((prevState) => ({
+        ...prevState,
+        [name]: {
+          ...prevState[name],
+          error: !validationResult.error,
+        },
+      }));
+    } else if (name === "email") {
+      let validationResult = validateEmailAddress(value);
+      temp[name] = validationResult.value;
+      setValidate((prevState) => ({
+        ...prevState,
+        [name]: {
+          ...prevState[name],
+          error: !validationResult.error,
+        },
+      }));
+    } else if (name === "password") {
+      let validationResult = validatePassword(value);
+      temp[name] = validationResult.value;
+      setValidate((prevState) => ({
+        ...prevState,
+        [name]: {
+          ...prevState[name],
+          error: !validationResult.error,
+        },
+      }));
+    }
     console.log(name, value);
   };
+  console.log(validate);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios
-      .post("http://192.168.0.113/api/user/register", formData)
-      .then((response) => {
-        console.log(response);
-        navigate("/login");
-      })
-      .catch((error) => {
-        if (
-          error.response &&
-          error.response.status >= 400 &&
-          error.response.status <= 500
-        ) {
-          setError(error.response.data.message);
-        }
-      });
+    formData.name && formData.email && formData.password !== " "
+      ? Register(formData)
+          .then((response) => {
+            navigate("/login");
+            console.log(response.message);
+          })
+          .catch((error) => {
+            if (
+              error.response &&
+              error.response.status >= 400 &&
+              error.response.status <= 500
+            ) {
+              setError(error.response.data.message);
+              setServerResponse(error.response.data.error.email);
+            }
+          })
+      : "";
   };
 
   return (
     <div className="container">
-      <form className="form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <div className="form-title">Sign Up</div>
         <div className="input-container">
           <Input
@@ -56,7 +98,8 @@ const SignUp = () => {
             onChange={handleChange}
             value={formData.name}
             className="input-container"
-            required="true"
+            required={true}
+            error={!validate.name.error ? validate.name.message : ""}
           />
         </div>
 
@@ -69,9 +112,11 @@ const SignUp = () => {
             onChange={handleChange}
             value={formData.email}
             className="input-container"
-            required="true"
+            required={true}
+            error={!validate.email.error ? validate.email.message : ""}
           />
         </div>
+
         <div className="input-container">
           <Input
             label="Password "
@@ -81,10 +126,12 @@ const SignUp = () => {
             onChange={handleChange}
             value={formData.password}
             className="input-container"
-            required="true"
+            required={true}
+            error={!validate.password.error ? validate.password.message : ""}
           />
         </div>
-
+        {serverResponse && <div className="input_error">{serverResponse}</div>}
+        <br></br>
         {error && <div className="input_error">{error}</div>}
 
         <Button type="submit" className="submit" buttonName="submit" />

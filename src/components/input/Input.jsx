@@ -7,11 +7,14 @@ const Input = ({
   name,
   placeholder,
   onChange,
+  onFocus,
   value,
   style,
   disabled,
   required,
   error,
+  accept,
+  
 }) => {
   return (
     <div>
@@ -25,10 +28,12 @@ const Input = ({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        onFocus={onFocus}
         value={value}
         style={style}
         disabled={disabled}
         required={required}
+        accept={accept}
       />
       <p
         className="input_error"
@@ -43,17 +48,29 @@ const Input = ({
 };
 
 Input.propTypes = {
-  label:PropTypes.string,
-  className: PropTypes.string,
-  type: PropTypes.oneOf(["text", "email", "password", "number"]).isRequired,
+  label: PropTypes.string,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  type: PropTypes.oneOf(["text", "email", "password", "number","file"]).isRequired,
   placeholder: PropTypes.string,
+  accept:PropTypes.oneOf(["jpg","png","jpeg"]).isRequired,
   onChange: PropTypes.func,
+  onFocus:PropTypes.func,
   name: PropTypes.string,
   value: PropTypes.string,
   style: PropTypes.object,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   error: PropTypes.string,
+  
+};
+Input.defaultProps = {
+  type: "text",
+  label: "top",
+  size: "large",
+  disabled: false,
+  required: false,
+  error: "",
+ 
 };
 
 export default Input;

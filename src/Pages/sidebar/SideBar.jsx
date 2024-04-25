@@ -8,6 +8,7 @@ const SideBar = () => {
         {sideBar.map((item,index) => (
           <li key={index}>
             <NavLink className="navLink" to={item.path}>{item.name}</NavLink>
+       
           </li>
         ))}
       </ul>

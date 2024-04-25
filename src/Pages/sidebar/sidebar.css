@@ -15,11 +15,13 @@ ul{
     padding: 0;
     overflow: hidden;
     text-decoration: none;
-    padding: 5rem 5rem  ;
+    padding: 1rem 1rem  ;
+    font-size: small;
+    margin-top: 60px;
 }
 .side_bar_container ul li{
   
-    padding: 7px;
+    padding-top: 7px;
   
 }
 .navLink{

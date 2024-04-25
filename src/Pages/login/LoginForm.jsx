@@ -12,20 +12,19 @@ const LoginForm = () => {
   });
   const [error,setError]=useState("")
 
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value,
     });
-    setError("")
+    setError("");
+    console.log(name, value);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
+  const handleSubmit = () => {  
       Login(formData).then((response) => {
         const user=response.user;
         const token=response.token;
@@ -33,6 +32,7 @@ const LoginForm = () => {
         sessionStorage.setItem("user_token", token);
         navigate("/");
        console.log(response)
+       console.log("submit")
       })
     .catch((error)=>{
       if (
@@ -42,15 +42,12 @@ const LoginForm = () => {
       ) {
         setError(error.response.data.message);
       }
-      
-      // console.log(error);
-      
-      // setError(error.response.data.message)
+
     })
   };
   return (
     <div className="container">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" >
         <div className="form-title">Login</div>
         <div className="input-container">
           <Input
@@ -61,7 +58,7 @@ const LoginForm = () => {
             onChange={handleChange}
             value={formData.email}
             className="input-container"
-        
+            required={true}        
           />
         </div>
 
@@ -81,7 +78,7 @@ const LoginForm = () => {
           <a href="#">Forgot Password ?</a>
         </span>
       {error && <div className="input_error">{error}</div> }
-        <Button type="submit" className="submit" buttonName="submit" />
+        <Button type="button" className="submit" onClick={handleSubmit} buttonName="submit"  />
         <p className="signup-link">
           No account?
           <Link to="/sign_up">Sign Up</Link>
