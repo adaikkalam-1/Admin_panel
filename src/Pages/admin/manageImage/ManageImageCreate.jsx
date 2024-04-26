@@ -2,31 +2,38 @@ import { useState } from "react";
 import Button from "../../../components/button/Button";
 import Input from "../../../components/input/Input";
 import Modal from "../../../components/modal/Modal";
-
 import "./image.css";
 import { ImageUpload } from "../../../services/Index";
 
 const ManageImageCreate = () => {
   const [showModel, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    image_name: "",
     description: "",
-    image: "",
+    file: null,
   });
+  const [uploadedImages, setUploadedImages] = useState([]);
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value ,file} = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: name === "file" ? file[0]:value,
     });
-    console.log(name, value);
+    console.log(name, value,file);
   };
   const handleSubmit=(e)=>{
     e.preventDefault()
     ImageUpload(formData)
           .then((response) => {
             console.log(response.message);
+            setUploadedImages([...uploadedImages, formData]); 
+            setFormData({
+              image_name:"",
+              description:"",
+              file:null
+            })
           })
+
           .catch((error) => {
             console.log(error)
           })
@@ -54,6 +61,7 @@ const ManageImageCreate = () => {
                     placeholder="Image Name"
                     name="image_name"
                     onChange={handleChange}
+                    value={formData.image_name}
                   />
                 </div>
                 <div className="input-container">
@@ -63,6 +71,7 @@ const ManageImageCreate = () => {
                     placeholder="Image Description"
                     name="description"
                     onChange={handleChange}
+                    value={formData.description}
                   />
                 </div>
                 <div className="input-container">
@@ -70,9 +79,10 @@ const ManageImageCreate = () => {
                     type="file"
                     label="Select The Image"
                     placeholder="Select The Image"
-                    name="image"
+                    name="file"
                     accept=".jpg, .jpeg, .png"
                     onChange={handleChange}
+                    value={formData.file}
                   />
                 </div>
                 <Button
@@ -86,17 +96,21 @@ const ManageImageCreate = () => {
           close={setShowModal}
         />
       )}
-      {/* <div className="card">
-        <div className="card_container">
+      <div className="card">
+      {uploadedImages.map((item,i)=>(
+        <div className="card_container" key={i}>
           <div className="card">
+            <img src={URL.createObjectURL(item.file)}/>
             <div className="card_content">
-              <h3>Image</h3>
-              <p>Description</p>
+
+              <h3>{item.file}</h3>
+              <p>{item.description}</p>
             </div>
             <a className="btn2" href="#">Edit</a>
           </div>
         </div>
-      </div> */}
+  ))}
+      </div>
     </div>
   );
 };
