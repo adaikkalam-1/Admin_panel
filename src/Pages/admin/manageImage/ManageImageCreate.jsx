@@ -98,7 +98,7 @@ const ManageImageCreate = () => {
         </div>
       </div> */}
     </div>
-  );f
+  );
 };
 
 export default ManageImageCreate;
