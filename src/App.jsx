@@ -15,7 +15,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route element={<ProtectedRoute />}> */}
+        <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate replace to="dashboard"/>}/>
             <Route path="dashboard" element={<Dashboard />} />
@@ -23,9 +23,9 @@ const App = () => {
             <Route path="manage_folder" element={<FolderCreate />} />
             <Route path="manage_image" element={<ManageImageCreate />} />
           </Route>
-        {/* </Route> */}
-        {/* <Route path="/login" element={<LoginForm/>} />
-        <Route path="/sign_up" element={<SignUp />} /> */}
+        </Route> 
+         <Route path="/login" element={<LoginForm/>} />
+        <Route path="/sign_up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
