@@ -1,14 +1,24 @@
-import { Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import SideBar from "./Pages/sidebar/SideBar";
 import "./layout.css";
+import { sideBar } from "./data/constant";
+
+
 
 const Layout = () => {
+  
+  
   return (
     <div className="layout_grid">
       <SideBar />
-      <h1 className="head-grid">Welcome</h1>
+      <div className="head-grid">
+        {sideBar.map((item,index) => (    
+          <p key={index} >{item.title}</p>
+            
+        ))}
+      </div>
 
-      <main className="outlet_grid">
+           <main className="outlet_grid">
         <div className="con">
           <Outlet />
         </div>

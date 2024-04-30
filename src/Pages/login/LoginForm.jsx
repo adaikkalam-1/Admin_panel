@@ -71,6 +71,7 @@ const LoginForm = () => {
             onChange={handleChange}
             value={formData.password}
             className="input-container"
+            required={true}
           
           />
         </div>

@@ -13,12 +13,12 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
-  const token = JSON.parse(localStorage.getItem("user_token"));
+  const token = sessionStorage.getItem("user_token");
   return {
     ...config,
     headers: {
       "Access-Control-Allow-Origin": "*",
-      token: `${token}`,
+      Authorization: `Bearer ${token}`,
     },
   };
 });

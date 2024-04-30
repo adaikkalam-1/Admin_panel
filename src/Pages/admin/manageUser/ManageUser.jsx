@@ -1,9 +1,9 @@
 
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const ManageUser = () => {
 
-  const navigate=useNavigate()
+  const navigate=Navigate()
   return (
     <div>
     <button

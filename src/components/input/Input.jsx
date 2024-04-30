@@ -16,6 +16,7 @@ const Input = ({
   accept,
   
 }) => {
+  console.log(value)
   return (
     <div>
       <label className="input_label">
@@ -29,7 +30,6 @@ const Input = ({
         placeholder={placeholder}
         onChange={onChange}
         onFocus={onFocus}
-        value={value}
         style={style}
         disabled={disabled}
         required={required}
@@ -52,7 +52,7 @@ Input.propTypes = {
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   type: PropTypes.oneOf(["text", "email", "password", "number","file"]).isRequired,
   placeholder: PropTypes.string,
-  accept:PropTypes.oneOf(["jpg","png","jpeg"]).isRequired,
+  accept:PropTypes.string,
   onChange: PropTypes.func,
   onFocus:PropTypes.func,
   name: PropTypes.string,

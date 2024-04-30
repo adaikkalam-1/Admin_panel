@@ -1,0 +1,38 @@
+.folder_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.box {
+  border: 2px solid gainsboro;
+  height: 8vh;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+.dropdown {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.dropdown option {
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  margin-top: 5px;
+}
+/* .dropdown option:nth-child(even){
+    background: rgb(195, 229, 242);
+    border-radius: 12px;
+    border-top-left-radius: 33px;
+    border-bottom-left-radius: 13px;
+  }  
+  .dropdown option:nth-child(odd){
+    background: rgb(220, 201, 218);
+   border-top-right-radius: 33px;
+   border-bottom-left-radius: 13px;
+  }   */
