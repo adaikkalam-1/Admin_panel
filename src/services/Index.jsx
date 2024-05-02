@@ -14,3 +14,6 @@ export const ImageUpload= async(data)=>{
   return await requests.post(`/uploads/store`, data);
 }
 
+export const DisplayImage= async(data)=>{
+  return await requests.get(`/uploads`, data);
+}

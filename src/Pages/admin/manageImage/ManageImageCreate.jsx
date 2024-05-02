@@ -4,6 +4,7 @@ import Input from "../../../components/input/Input";
 import Modal from "../../../components/modal/Modal";
 import "./image.css";
 import { ImageUpload } from "../../../services/Index";
+import ImageDisplay from "./ImageDisplay";
 
 const ManageImageCreate = () => {
   const [showModel, setShowModal] = useState(false);
@@ -115,21 +116,9 @@ const ManageImageCreate = () => {
           close={setShowModal}
         />
       )}
-      {/* <div className="card">
-      {uploadedImages.map((item,i,image)=>(
-        <div className="card_container" key={i}>
-          <div className="card">
-          <img src={URL.createObjectURL(image)} alt={`Uploaded Image ${i}`} />
-            <div className="card_content">
-            <h3>{formData.image_name}</h3>
-            <p>{formData.description}</p>
-            </div>
-            <a className="btn2" href="#">Edit</a>
-          </div>
-        </div>
-      ))}
-      </div> 
-     */}
+  
+   
+     <ImageDisplay/>
     </div>
   );
 };
