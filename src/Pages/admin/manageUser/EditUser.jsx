@@ -2,9 +2,7 @@
 
 const EditUser = () => {
   return (
-    <div>
-      
-    </div>
+    <div>EditUser</div>
   )
 }
 

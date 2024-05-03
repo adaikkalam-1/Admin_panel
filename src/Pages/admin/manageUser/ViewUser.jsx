@@ -2,9 +2,7 @@
 
 const ViewUser = () => {
   return (
-    <div>
-      
-    </div>
+    <div>ViewUser</div>
   )
 }
 

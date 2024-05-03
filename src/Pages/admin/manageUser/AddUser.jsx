@@ -1,9 +1,8 @@
 
+
 const AddUser = () => {
   return (
-    <div>
-      
-    </div>
+    <div>AddUser</div>
   )
 }
 

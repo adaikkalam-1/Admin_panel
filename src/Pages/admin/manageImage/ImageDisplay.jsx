@@ -27,7 +27,7 @@ const ImageDisplay = () => {
               Edit
             </a>
           </div>
-    
+      
       ))}
     </div>
  

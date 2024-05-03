@@ -1,20 +1,17 @@
+import AddUser from "./AddUser"
+import EditUser from "./EditUser"
+import ViewUser from "./ViewUser"
 
-import { Navigate } from 'react-router-dom';
 
 const ManageUser = () => {
-
-  const navigate=Navigate()
   return (
     <div>
-    <button
-      onClick={()=>{
-        sessionStorage.clear();
-        navigate("/login")
-      }}>
-        Log Out
-
-    </button>
-  </div>
+      ManageUser
+      <AddUser/>
+      <EditUser/>
+      <ViewUser/>
+      
+      </div>
   )
 }
 
