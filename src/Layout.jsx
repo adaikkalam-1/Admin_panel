@@ -1,7 +1,8 @@
-import { Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import SideBar from "./Pages/sidebar/SideBar";
 import "./layout.css";
 import { AiOutlineLogin } from "react-icons/ai";
+// import { sideBar } from "./data/constant";
 
 const Layout = () => {
   const handleClick = () => {
@@ -12,6 +13,12 @@ const Layout = () => {
     <div className="layout_grid">
       <SideBar />
       <div className="head-grid"> welcome
+     
+      {/* {sideBar.map((data, i) => (
+          <NavLink key={i} className="navLink" to={data.path}>
+            {data.name}
+          </NavLink>
+        ))} */}
         <div className="icons">
           <div className="sign">
             <AiOutlineLogin onClick={handleClick} />
@@ -31,34 +38,3 @@ const Layout = () => {
   );
 };
 export default Layout;
-// import  { useState, useEffect } from 'react';
-// import axios from 'axios';
-
-// const ImageDisplay = () => {
-//   const [imageUrl, setImageUrl] = useState('');
-
-//   useEffect(() => {
-//     const fetchImage = async () => {
-//       try {
-//         const response = await axios.get('/api/images/example.jpg');  const response = await axios.get('/// Replace 'example.jpg' with the actual image name
-//         setImageUrl(response.data.imageUrl); // Assuming your API returns an object with the image URL
-//       } catch (error) {
-//         console.error('Error fetching image:', error);
-//       }
-//     };
-
-//     fetchImage();
-//   }, []); // Empty dependency array to run the effect only once when the component mounts
-
-//   return (
-//     <div>
-//       {imageUrl ? (
-//         <img src={imageUrl} alt="Image" />
-//       ) : (
-//         <p>Loading image...</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ImageDisplay;

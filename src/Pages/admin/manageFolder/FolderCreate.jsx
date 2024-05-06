@@ -91,7 +91,7 @@ const handleFileChange=(e)=>{
                   ))}
                 </div>
 
-                <select multiple name="multiselect" onChange={handleChange} className="dropdown">
+                <select name="multiselect" onChange={handleChange} className="dropdown">
                   {options.map((id) => (
                     <option key={id.id} value={id.value}>
                       {id.value}

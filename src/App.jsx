@@ -6,6 +6,7 @@ import FolderCreate from "./Pages/admin/manageFolder/FolderCreate";
 import ManageImageCreate from "./Pages/admin/manageImage/ManageImageCreate";
 import ManageUser from "./Pages/admin/manageUser/ManageUser";
 import Dashboard from "./Pages/dashboard/Dashboard";
+import Image_update from "./Pages/admin/manageImage/Image_update";
 // import LoginForm from "./Pages/login/LoginForm";
 
 
@@ -22,6 +23,7 @@ const App = () => {
             <Route path='manage_user' element={<ManageUser />} />
             <Route path="manage_folder" element={<FolderCreate />} />
             <Route path="manage_image" element={<ManageImageCreate />} />
+            <Route path="/image_update/:id" element={<Image_update/>}/>
           </Route>
          {/* </Route>  */}
          {/* <Route path="/login" element={<LoginForm/>} />
