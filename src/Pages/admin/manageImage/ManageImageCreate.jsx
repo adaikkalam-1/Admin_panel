@@ -5,6 +5,10 @@ import Modal from "../../../components/modal/Modal";
 import "./image.css";
 import { ImageUpload } from "../../../services/Index";
 import ImageDisplay from "./ImageDisplay";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+  
 
 
 const ManageImageCreate = () => {
@@ -34,6 +38,18 @@ const ManageImageCreate = () => {
     console.log(name, files);
     
   }
+
+  const notify = () => toast.success('Image Upload Successfully !', {
+    position: "top-center",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    // transition: Bounce,  
+    });
   const handleSubmit= async (e)=>{
     e.preventDefault()
     const file =new FormData()
@@ -46,6 +62,7 @@ const ManageImageCreate = () => {
     const response = await ImageUpload(file);
     console.log(response.message);
     setUploadedImages([...uploadedImages, formData.image]); 
+    notify()
     setShowModal(false);
   } catch (error) {
     console.log(error);
@@ -57,14 +74,15 @@ const ManageImageCreate = () => {
       <Button
         className="btn1"
         onClick={() => setShowModal(true)}
-        buttonName="Open"
+        buttonName="Add"
+
       />
       {showModel && (
         <Modal
           title={<div className="form-title">Image Upload</div>}
           content={
             <div className="container-img">
-              <form onSubmit={handleSubmit} className="form">
+              <form onSubmit={handleSubmit}  className="form">
                 <div className="input-container">
                   <Input
                     type="text"
@@ -110,15 +128,31 @@ const ManageImageCreate = () => {
                   type="submit"
                   className="submit"
                   buttonName="submit"
+              
                 />
               </form>
+              
             </div>
           }
           close={setShowModal}
-        />
+          />
       )}
   
    
+     <ToastContainer 
+              position="top-center"
+              autoClose={1000}
+              limit={1}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            
+              />
      <ImageDisplay/>
     </div>
   );

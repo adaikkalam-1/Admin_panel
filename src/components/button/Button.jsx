@@ -7,12 +7,13 @@ const Button = (
   onClick,
   size,
   buttonName,
+  icons,
 
 }) => {
   return (
     <div>
-      <button type={type} onClick={onClick} className={`button ${size} ${className}`}>
-        {buttonName}
+      <button type={type} onClick={onClick}  className={`button ${size} ${className}`}>
+        {buttonName}{icons}
       </button>
     </div>
   );
@@ -22,7 +23,8 @@ Button.propTypes={
     type:PropTypes.string,
     size:PropTypes.oneOf(["small","large","default"]),
     buttonName:PropTypes.string,
-    onClick:PropTypes.func.isRequired
+    onClick:PropTypes.func.isRequired,
+    icons:PropTypes.string,
 
 }
 
